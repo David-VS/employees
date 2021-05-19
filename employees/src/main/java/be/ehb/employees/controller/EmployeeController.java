@@ -14,34 +14,38 @@ import java.util.Optional;
 @RequestMapping(value = "/employees")
 public class EmployeeController {
 
-    @Autowired
     EmployeeDAO dao;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @Autowired
+    public EmployeeController(EmployeeDAO dao) {
+        this.dao = dao;
+    }
+
+    @GetMapping
     @ResponseBody
     public Iterable<Employee> findAll(){
         return dao.findAll();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     @ResponseBody
     public Optional<Employee> findById(@PathVariable(value = "id") int id){
         return dao.findById(id);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @PostMapping
     @ResponseBody
     public Iterable<Employee> findAllByName(@RequestParam(value = "name") String name){
         return dao.findAllByName(name);
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    @PostMapping(value = "/search")
     @ResponseBody
     public Iterable<Employee> findByPartOfName(@RequestParam(value = "name") String part){
         return dao.findByNameContains(part);
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @PostMapping("/add")
     @ResponseBody
     public ResponseEntity addOne(@RequestParam(value = "name") String name,
                                  @RequestParam(value = "phonenr") String phonenr,
