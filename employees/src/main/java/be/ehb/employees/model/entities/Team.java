@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@JsonIgnoreProperties("members")
+@JsonIgnoreProperties("members")// om circulaire verwijzingen (endless loop) te negeren
 public class Team {
 
     @Id

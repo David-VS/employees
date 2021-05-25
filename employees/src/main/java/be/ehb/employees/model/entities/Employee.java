@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 
 @Entity //mapt op een tabel in databank
-@JsonIgnoreProperties("team") // om circulaire verwijzingen (endless loop) te negeren
 public class Employee {
 
     @Id // = primary key in tabel
