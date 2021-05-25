@@ -1,9 +1,9 @@
-package be.ehb.employees.model;
+package be.ehb.employees.model.dao;
 
+import be.ehb.employees.model.entities.Employee;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //overerven van CrudRepository<type Entity, type van primary key>

@@ -1,18 +1,20 @@
-package be.ehb.employees.model;
+package be.ehb.employees.model.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 
 @Entity //mapt op een tabel in databank
+@JsonIgnoreProperties("team") // om circulaire verwijzingen (endless loop) te negeren
 public class Employee {
 
     @Id // = primary key in tabel
     @GeneratedValue(strategy = GenerationType.IDENTITY) //werkt enkel voor gehele getallen int, long, short
     private int id;
     private String name, phonenr, email;
-
+    @ManyToOne
+    @JoinColumn(name = "team_name", nullable = true)
+    private Team team;
     //POJO -> Plain old Java Object
     //default constructor, getters en setters
     public Employee() {
@@ -54,5 +56,13 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

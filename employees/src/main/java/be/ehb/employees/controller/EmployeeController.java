@@ -1,7 +1,7 @@
 package be.ehb.employees.controller;
 
-import be.ehb.employees.model.Employee;
-import be.ehb.employees.model.EmployeeDAO;
+import be.ehb.employees.model.entities.Employee;
+import be.ehb.employees.model.dao.EmployeeDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
