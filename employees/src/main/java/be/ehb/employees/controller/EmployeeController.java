@@ -50,10 +50,7 @@ public class EmployeeController {
     public ResponseEntity addOne(@RequestParam(value = "name") String name,
                                  @RequestParam(value = "phonenr") String phonenr,
                                  @RequestParam(value = "email") String email){
-        Employee temp = new Employee();
-        temp.setName(name);
-        temp.setPhonenr(phonenr);
-        temp.setEmail(email);
+        Employee temp = new Employee(name, phonenr, email);
         dao.save(temp);
 
         return new ResponseEntity(HttpStatus.OK);

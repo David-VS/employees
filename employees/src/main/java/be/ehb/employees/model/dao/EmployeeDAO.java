@@ -14,8 +14,6 @@ public interface EmployeeDAO extends CrudRepository<Employee, Integer> {
     List<Employee> findAllByName (String name);
 
 
-
-
-    @Query("SELECT e FROM Employee e WHERE e.name like %:input%")
+    //"SELECT e FROM Employee e WHERE e.name like %:input%"
     Iterable<Employee> findByNameContains(String input);
 }
