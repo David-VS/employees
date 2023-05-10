@@ -10,10 +10,13 @@ import java.util.List;
 //bevat al methoden voor insert, delete en select all, select by id
 public interface EmployeeDAO extends CrudRepository<Employee, Integer> {
 
+
+
     //je kan uitbreiden met eigen methoden
     List<Employee> findAllByName (String name);
 
 
     //"SELECT e FROM Employee e WHERE e.name like %:input%"
     Iterable<Employee> findByNameContains(String input);
+
 }

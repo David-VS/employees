@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping(value = "/employees")
 public class EmployeeController {
 
@@ -22,31 +22,26 @@ public class EmployeeController {
     }
 
     @GetMapping
-    @ResponseBody
     public Iterable<Employee> findAll(){
         return dao.findAll();
     }
 
     @GetMapping(value = "/{id}")
-    @ResponseBody
     public Optional<Employee> findById(@PathVariable(value = "id") int id){
         return dao.findById(id);
     }
 
-    @PostMapping
-    @ResponseBody
+    @PostMapping("/name")
     public Iterable<Employee> findAllByName(@RequestParam(value = "name") String name){
         return dao.findAllByName(name);
     }
 
     @PostMapping(value = "/search")
-    @ResponseBody
     public Iterable<Employee> findByPartOfName(@RequestParam(value = "name") String part){
         return dao.findByNameContains(part);
     }
 
     @PostMapping("/add")
-    @ResponseBody
     public ResponseEntity addOne(@RequestParam(value = "name") String name,
                                  @RequestParam(value = "phonenr") String phonenr,
                                  @RequestParam(value = "email") String email){

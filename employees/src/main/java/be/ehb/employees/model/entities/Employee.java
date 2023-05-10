@@ -11,9 +11,6 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //werkt enkel voor gehele getallen int, long, short
     private int id;
     private String name, phonenr, email;
-    @ManyToOne
-    @JoinColumn(name = "team_name", nullable = true)
-    private Team team;
     //POJO -> Plain old Java Object
     //default constructor, getters en setters
     public Employee() {
@@ -55,13 +52,5 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
     }
 }
