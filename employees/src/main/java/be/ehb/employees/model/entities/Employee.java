@@ -1,8 +1,10 @@
 package be.ehb.employees.model.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity //mapt op een tabel in databank
 public class Employee {
@@ -17,6 +19,13 @@ public class Employee {
     }
 
     public Employee(String name, String phonenr, String email) {
+        this.name = name;
+        this.phonenr = phonenr;
+        this.email = email;
+    }
+
+    public Employee(int id, String name, String phonenr, String email) {
+        this.id = id;
         this.name = name;
         this.phonenr = phonenr;
         this.email = email;

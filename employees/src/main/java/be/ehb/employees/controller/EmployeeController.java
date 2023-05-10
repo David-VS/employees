@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequestMapping(value = "/employees")
 public class EmployeeController {
 
-    EmployeeDAO dao;
+    private final EmployeeDAO dao;
 
     @Autowired
     public EmployeeController(EmployeeDAO dao) {
@@ -28,6 +28,14 @@ public class EmployeeController {
 
     @GetMapping(value = "/{id}")
     public Optional<Employee> findById(@PathVariable(value = "id") int id){
+/*
+        Optional<Employee> temp = dao.findById(id);
+        if(temp.isPresent()){
+            return temp.get();
+        }else{
+            return null;
+        }
+ */
         return dao.findById(id);
     }
 
@@ -50,5 +58,33 @@ public class EmployeeController {
 
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @PutMapping("/update")
+    public ResponseEntity updateOne(@RequestParam(value = "id") int id,
+                                  @RequestParam(value = "name") String name,
+                                  @RequestParam(value = "phonenr") String phonenr,
+                                  @RequestParam(value = "email") String email){
+
+        if(dao.existsById(id)){
+            Employee temp = new Employee(id, name, phonenr, email);
+            dao.save(temp);
+            return new ResponseEntity(HttpStatus.OK);
+        }else{
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity deleteOne(@RequestParam int id){
+
+        if(dao.existsById(id)){
+            dao.deleteById(id);
+            return new ResponseEntity(HttpStatus.OK);
+        }else{
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 }
 
